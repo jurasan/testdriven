@@ -1,0 +1,15 @@
+docker-compose -f docker-compose-dev.yml build
+docker-compose -f docker-compose-dev.yml up -d
+docker exec -it testdriven-app_users_1 sh
+
+docker-compose -f docker-compose-dev.yml build --no-cache
+
+
+
+Problems with mounting volume on Windows:
+ 1) Local Security Policy > Network List Manager Policies and Double-clicked ‘unidentified Networks’ and change the location type to ‘private’
+    https://forums.docker.com/t/volume-mounts-in-windows-does-not-work/10693/92
+
+OR 
+
+ 2) Docker Setting -> Shared Drive -> Reset credentials.
