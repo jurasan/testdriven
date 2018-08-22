@@ -5,6 +5,15 @@ docker exec -it testdriven-app_users_1 sh
 docker-compose -f docker-compose-dev.yml build --no-cache
 docker-compose -f docker-compose-dev.yml up -d --build
 
+pip install -r requirements.txt
+
+
+To show configuration:
+Add a print statement to __init__.py, right before the route handler, to view the app config to ensure that it is working:
+import sys
+print(app.config, file=sys.stderr)
+$ docker-compose -f docker-compose-dev.yml logs
+
 
 
 Problems with mounting volume on Windows:
