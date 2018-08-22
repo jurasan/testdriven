@@ -7,6 +7,16 @@ docker-compose -f docker-compose-dev.yml up -d --build
 
 pip install -r requirements.txt
 
+Recreate db:
+$ docker-compose -f docker-compose-dev.yml run users python manage.py recreate_db
+Connect to db:
+$ docker-compose -f docker-compose-dev.yml exec users-db psql -U postgres
+
+Shell:
+$ docker-compose -f docker-compose-dev.yml run users flask shell
+
+Test:
+$ docker-compose -f docker-compose-dev.yml run users python manage.py test
 
 To show configuration:
 Add a print statement to __init__.py, right before the route handler, to view the app config to ensure that it is working:
