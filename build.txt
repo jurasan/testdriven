@@ -9,6 +9,10 @@ pip install -r requirements.txt
 
 Recreate db:
 $ docker-compose -f docker-compose-dev.yml run users python manage.py recreate_db
+
+Seed db:
+$ docker-compose -f docker-compose-dev.yml run users python manage.py seed_db
+
 Connect to db:
 $ docker-compose -f docker-compose-dev.yml exec users-db psql -U postgres
 
@@ -17,6 +21,19 @@ $ docker-compose -f docker-compose-dev.yml run users flask shell
 
 Test:
 $ docker-compose -f docker-compose-dev.yml run users python manage.py test
+
+Create a new Docker host with Docker Machine:
+$ docker-machine create --driver amazonec2 testdriven-prod
+$ docker-machine env testdriven-prod
+$ eval $(docker-machine env testdriven-prod)
+
+$ docker-compose -f docker-compose-prod.yml up -d --build
+$ docker-compose -f docker-compose-prod.yml run users python manage.py recreate_db
+$ docker-compose -f docker-compose-prod.yml run users python manage.py seed_db
+$ docker-compose -f docker-compose-prod.yml run users python manage.py test
+
+Show config: 
+$ docker-compose -f docker-compose-prod.yml run users env
 
 To show configuration:
 Add a print statement to __init__.py, right before the route handler, to view the app config to ensure that it is working:
