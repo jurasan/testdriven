@@ -4,3 +4,4 @@ env
 services/client/node_modules/
 services/client/coverage/
 services/client/src/components/__tests__/__snapshots__/
+services/client/build/
