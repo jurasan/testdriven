@@ -22,6 +22,12 @@ $ docker-compose -f docker-compose-dev.yml run users flask shell
 Test:
 $ docker-compose -f docker-compose-dev.yml run users python manage.py test
 
+Coverage:
+$ docker-compose -f docker-compose-dev.yml run users python manage.py cov
+
+Lint:
+$ docker-compose -f docker-compose-dev.yml run users flake8 project
+
 Create a new AWS EC2 Docker host with Docker Machine:
 $ docker-machine create --driver amazonec2 testdriven-prod
 Point to production host:
