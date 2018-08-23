@@ -1,9 +1,12 @@
+# services/users/project/tests/test_users.py
+
+
 import json
 import unittest
 
-from project.tests.base import BaseTestCase
 from project import db
 from project.api.models import User
+from project.tests.base import BaseTestCase
 
 
 def add_user(username, email):
@@ -121,6 +124,7 @@ class TestUserService(BaseTestCase):
             self.assertEqual(response.status_code, 404)
             self.assertIn('User does not exist', data['message'])
             self.assertIn('fail', data['status'])
+
 
     def test_all_users(self):
         """Ensure get all users behaves correctly."""
