@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 class App extends Component {
-  constructor() {
-    super();
+  componentDidMount() {
     this.getUsers();
   }
 
@@ -11,7 +10,7 @@ class App extends Component {
     axios
       .get(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`)
       .then(res => {
-        console.log(res);
+        console.log(res.data.data);
       })
       .catch(err => {
         console.log(err);
