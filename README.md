@@ -73,3 +73,13 @@ OR
 npm test
 react-scripts test --coverage
 ```
+
+## Docker
+
+### Run
+
+`docker-compose -f docker-compose-dev.yml up --build -d client`
+
+### Test
+
+`docker-compose -f docker-compose-dev.yml run client npm test`
