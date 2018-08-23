@@ -5,7 +5,9 @@ import AddUser from "./components/AddUser";
 
 class App extends Component {
   state = {
-    users: []
+    users: [],
+    username: "",
+    email: ""
   };
   componentDidMount() {
     this.getUsers();
@@ -24,7 +26,25 @@ class App extends Component {
 
   addUser = event => {
     event.preventDefault();
-    console.log("sanity check!");
+    const data = {
+      username: this.state.username,
+      email: this.state.email
+    };
+    axios
+      .post(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`, data)
+      .then(res => {
+        this.getUsers(); // new
+        this.setState({ username: "", email: "" }); // new
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  handleChange = event => {
+    const obj = {};
+    obj[event.target.name] = event.target.value;
+    this.setState(obj);
   };
 
   render() {
@@ -39,7 +59,12 @@ class App extends Component {
               <h1 className="title is-1">All Users</h1>
               <hr />
               <br />
-              <AddUser addUser={this.addUser} />
+              <AddUser
+                username={this.state.username}
+                email={this.state.email}
+                addUser={this.addUser}
+                handleChange={this.handleChange}
+              />
               <br />
               <br /> {/* new */}
               <UsersList users={this.state.users} />
