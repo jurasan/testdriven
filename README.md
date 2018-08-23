@@ -83,3 +83,10 @@ react-scripts test --coverage
 ### Test
 
 `docker-compose -f docker-compose-dev.yml run client npm test`
+
+# Production
+
+$ docker-machine env testdriven-prod-2
+$ eval $(docker-machine env testdriven-prod-2)
+$ export REACT_APP_USERS_SERVICE_URL=http://184.73.131.145
+$ docker-compose -f docker-compose-prod.yml up -d --build
